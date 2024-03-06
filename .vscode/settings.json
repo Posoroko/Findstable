@@ -1,0 +1,25 @@
+{
+  "tailwindCSS.experimental.configFile": "tailwind.config.ts",
+
+  "files.associations": {
+        "*.css": "tailwindcss"
+    },
+
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+
+    // for tailwind intellisense in objects: const ui = /*ui*/ { object}
+    "tailwindCSS.experimental.classRegex": [
+        ["ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]"],
+        ["/\\*ui\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"]
+    ],
+
+    // for tailwind in the ui prop of nuxt ui components
+    "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        "ngClass",
+        "ui"
+    ]
+}
