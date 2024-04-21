@@ -1,5 +1,8 @@
 <script setup>
 const colorMode = useColorMode();
+const { t, locale } = useI18n();
+
+import global from '@/locales/en/global.json';
 
 definePageMeta({
     title: 'Finds Table',
@@ -11,7 +14,17 @@ definePageMeta({
 </script>
 
 <template>
-    <main class="full centered">
-        <h1 class="text mainTC">Finds Table</h1>
+    <main class="full flex column justifyEnd">
+        <div class="text mainTC grow centered">
+            <div>
+                <h1>Finds Table</h1>
+                <p>{{t('hello') }}</p>
+                <p>{{ en_main }}</p>
+            </div>
+        </div>
+
+        <div class="flex justifyEnd">
+            <WidgetsColorModeToggler />
+        </div>
     </main>
 </template>
