@@ -8,6 +8,14 @@ defineProps({
     active: {
         type: Boolean,
         default: false
+    },
+    colorMode: {
+        type: String,
+        required: true,
+        default: 'adaptative',
+        validator: (value) => {
+            return ['light', 'dark', 'adaptative'].includes(value);
+        }
     }
 })
 </script>
@@ -16,6 +24,7 @@ defineProps({
     <svg :viewBox="icons[name].viewBox" 
         :class="[
             size,
+            colorMode,
             { 'active' : active }
         ]"
     >
@@ -24,12 +33,16 @@ defineProps({
 </template>
 
 <style scoped>
-#app.darkMode svg {
-    fill: white;
+svg.adaptative {
+    fill: var(--main-text-color);
 }
-#app.lightMode svg {
-    fill: black;
+svg.light {
+    fill: var(--main-light);
 }
+svg.dark {
+    fill: var(--main-dark);
+}
+
 svg.small {
     width: 16px;
     height: 16px;

@@ -1,0 +1,16 @@
+{
+    "page_account": {
+        "content": {
+            "title": "My account",
+            "personalInfo": {
+                "title": "Personal information",
+                "userName": "Username",
+                "email": "Email"
+            },
+            "settings": {
+                "language": "Language",
+                "colorMode": "Color mode"
+            }
+        }
+    }
+}

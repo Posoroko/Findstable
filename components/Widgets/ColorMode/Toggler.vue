@@ -2,6 +2,9 @@
 const toggleColorMode = useToggleColorMode();
 const colorMode = useColorMode();
 
+const colorModeCookie = useCookie('colorMode');
+
+colorModeCookie.value = colorModeCookie.value || colorMode.value;
 
 defineProps({
     floating: {
@@ -14,12 +17,12 @@ defineProps({
 
 <template>
     <button 
-        @click="colorMode = colorMode === 'darkMode' ? 'lightMode' : 'darkMode' "
+        @click="colorModeCookie = colorModeCookie === 'darkMode' ? 'lightMode' : 'darkMode'"
         class="pointer"
     >
         <WidgetsIconsMain 
             :name="colorMode === 'darkMode' ? 'darkMode' : 'lightMode'"
-            size="medium"
+            size="small"
         />
     </button>
 </template>

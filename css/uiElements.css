@@ -1,0 +1,14 @@
+:root {
+    --border-radius-s: 5px;
+    --border-radius-m: 8.5px;
+    --border-radius-l: 12px;
+}
+
+input[type=submit],
+button.rounded {
+    border-radius: var(--border-radius-m);
+}
+input[type=submit].hover:hover,
+.button.hover:hover {
+    filter: brightness(0.9);
+}

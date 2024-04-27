@@ -1,9 +1,10 @@
 <script setup>
 const colorMode = useColorMode();
 const { t, locale } = useI18n();
+const userState = useUserState();
 
-import global from '@/locales/en/global.json';
 
+// console.log(global);
 definePageMeta({
     title: 'Finds Table',
     description: 'Finds Table, a place to show your share of history.',
@@ -15,16 +16,43 @@ definePageMeta({
 
 <template>
     <main class="full flex column justifyEnd">
-        <div class="text mainTC grow centered">
-            <div>
+        <div class="text mainTC grow flex column justifyCenter alignCenter gap20">
+            <div class="box">
                 <h1>Finds Table</h1>
-                <p>{{t('hello') }}</p>
-                <p>{{ en_main }}</p>
+
+                <p class="text-lg ltr-tight semibold marTop20">
+                    {{t('page_account.content.welcomeText') }}
+                </p>
+                <p>
+                    ... {{ userState.accessToken.value.slice(-15) }}
+                </p>
+            </div>
+
+            <div class="box marTop50">
+                <FormsAuthenticationLoginSignup />
             </div>
         </div>
 
-        <div class="flex justifyEnd">
+        <div class="bottomBar flex justifyEnd aligncenter gap10">
+            <WidgetsLanguageSelector />
+
             <WidgetsColorModeToggler />
         </div>
     </main>
 </template>
+
+<style scoped>
+.box {
+    width: min(100%, 400px);
+    background-color: var(--main-dimmed);
+    border-radius: var(--border-radius-l);
+    padding: 16px;
+}
+h1 {
+    font-size: 2.8rem;
+    letter-spacing: -0.04em;
+}
+.bottomBar {
+    height: 48px;
+}
+</style>

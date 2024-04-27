@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+
+:root {
+    --font-size-base: 1rem;
+    --line-height-base: 1.5rem;
+
+    --font-size-large: 1.125rem;
+    --line-height-large: 1.75rem;
+
+    --font-size-small: .875rem;
+    --line-height-small: 1.25rem;
+    
+    --letter-spacing-tight: -.025em;
+}
+
+.fraunces {
+  font-family: "Fraunces", serif;
+}
+
+
+.text-base {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+}
+
+.text-sm {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+}
+.text-lg {
+    font-size: var(--font-size-large);
+    line-height: var(--line-height-large);
+}
+
+.ltr-tight {
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.semilight {
+    font-weight: 500;
+}
+.semibold {
+    font-weight: 600;
+}
+
+/* 
+
+Font colors
+
+*/
+
+/* adapts to color mode */
+.mainTC {
+    color: var(--main-text-color);
+    transition: 300ms ease;
+}
+
+.lightTC {
+    color: var(--main-light);
+    transition: 300ms ease;
+}

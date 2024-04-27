@@ -1,0 +1,31 @@
+{
+    "forms": {
+        "fields": {
+            "username": {
+                "label": "Pseudonyme",
+                "placeholder": "Choisissez un pseudonyme",
+                "messages": {
+                    "required": "Vous devez choisir un pseudo",
+                    "unavailable": "Quelqu'un utilise déjà ce pseudo"
+                }
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "Adresse courriel",
+                "messages": {
+                    "required": "Une courriel est requis",
+                    "invalid": "L'adresse courrielle est invalide",
+                    "unavailable": "Ce courriel est déjà utilisé"
+                }
+            },
+            "password": {
+                "label": "Mot de passe",
+                "placeholder": "Mot de passe",
+                "messages": {
+                    "required": "Un mot de passe est requis",
+                    "invalid": "Mot de passe invalide"
+                }
+            }
+        }
+    }
+}

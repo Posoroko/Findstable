@@ -9,11 +9,6 @@ const colorMode = useColorMode();
 </template>
 
 <style>
-:root {
-    --main-light: #f4f4f4;
-    --main-dark: #212121;
-}
-
 #app {
     height: 100vh;
     overflow: hidden;
@@ -22,11 +17,15 @@ const colorMode = useColorMode();
 #app.lightMode{
     --main-background-color: var(--main-light);
     --main-text-color: var(--main-dark);
+
+    --main-dimmed: #dddddd;
 }
 
 #app.darkMode{
     --main-background-color: var(--main-dark);
     --main-text-color: var(--main-light);
+
+    --main-dimmed: #484848;
 }
 
 .mainBGC {
@@ -34,8 +33,5 @@ const colorMode = useColorMode();
     transition: 300ms ease;
 }
 
-.mainTC {
-    color: var(--main-text-color);
-    transition: 300ms ease;
-}
+
 </style>

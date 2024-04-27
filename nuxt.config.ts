@@ -4,12 +4,19 @@ export default defineNuxtConfig({
     devtools: { 
         enabled: false 
     },
+    ssr: false,
     css: [
         '@/css/base.css',
-        '@/css/posoroko.css'
+        '@/css/posoroko.css',
+        '@/css/text.css',
+        '@/css/uiElements.css',
+        '@/css/colors.css',
     ],
     modules: [
         '@nuxtjs/i18n',
     ],
-    i18n
+    i18n,
+    runtimeConfig: {
+        DIRECTUS_URL: process.env.DIRECTUS_URL,
+    },
 })
