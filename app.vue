@@ -1,11 +1,17 @@
 <script setup>
-const colorMode = 'lightMode';
+const colorMode = useCookie('colorMode');
+
+initialization();
 
 </script>
 
 <template>
     <div id="app" :class="colorMode" class="mainBGC">
-        <slot />
+        <NuxtLayout>
+            <NuxtPage>
+
+            </NuxtPage>
+        </NuxtLayout>
     </div>
 </template>
 

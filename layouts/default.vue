@@ -4,35 +4,34 @@ const appState = useAppState();
 const localePath = useLocalePath();
 
 onMounted( async () => {
-    if(!$userIsloggedIn()) {
+    const refreshTokenCookie = useCookie('directus_refresh_token');
+    if(!$userIsloggedIn() && refreshTokenCookie.value) {
         await $autoLogin();
     }
 })
 </script>
 
 <template>
-    <ArchitectureAppBox>
-        <div class="full flex column justifyEnd">
-            <div class="flex w100 grow">
-                <div 
-                    class="sideBarBox relative"
-                    :class="{ 'active' : appState.showSideBar }"
-                >
-                    <ArchitectureSideBarMain />
-                </div>
-                
-                <main class="pageBox grow relative">
-                    <ArchitectureMainWidth>
-                        <NuxtPage />
-                    </ArchitectureMainWidth>
-                </main>
+    <div class="full flex column justifyEnd">
+        <div class="flex w100 grow relative">
+            <div 
+                class="sideBarBox relative"
+                :class="{ 'active' : appState.showSideBar }"
+            >
+                <ArchitectureSideBarMain />
             </div>
-
-            <div class="mobile_bottomBar">
-                <ArchitectureMobileBottomBar />
-            </div>
+            
+            <main class="pageBox grow relative">
+                <ArchitectureMainWidth>
+                    <NuxtPage />
+                </ArchitectureMainWidth>
+            </main>
         </div>
-    </ArchitectureAppBox>
+
+        <div class="mobile_bottomBar">
+            <ArchitectureMobileBottomBar />
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -44,6 +43,7 @@ main {
 }
 .mobile_bottomBar {
     height: 50px;
+    border-top: 1px solid var(--main-dimmed);
 }
 
 @media (min-width: 769px) {
@@ -57,7 +57,7 @@ main {
         display: flex;
     }
     .sideBarBox {
-        height: 100vh;
+        height: 100%;
         position: absolute;
         top: 0;
         left: 0;

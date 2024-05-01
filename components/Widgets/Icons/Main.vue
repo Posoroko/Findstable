@@ -1,6 +1,5 @@
 <script setup>
 import icons from '@/assets/icons.json';
-// const colorMode = useColorMode();
 
 defineProps({
     name: String,

@@ -17,7 +17,7 @@ export const useUserState = () => {
         () => ({
             userIsLoggedIn: false,
             avatarFileId: '',
-            userName: 'jim',
+            userName: '',
             email: '',
             role: '',
             id: '',

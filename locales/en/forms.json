@@ -1,6 +1,14 @@
 {
     "forms": {
         "fields": {
+            "invitationCode": {
+                "label": "Invitation code",
+                "placeholder": "your invitation code",
+                "messages": {
+                    "required": "An invitation code is required",
+                    "unavailable": "Invitation code is invalid"
+                }
+            },
             "username": {
                 "label": "User name",
                 "placeholder": "Enter a username",

@@ -1,3 +1,5 @@
+type ColorMode = 'lightMode' | 'darkMode';
+
 export const useAppState = () => {
     return useState<{
         showSideBar: boolean,
@@ -12,21 +14,4 @@ export const useAppState = () => {
             }
         })
     );
-}
-
-export const useColorMode = () => {
-    return useState<
-        string
-    >('colorMode',
-        () => ( useCookie('colorMode') || 'lightMode')
-    );
-}
-
-export const useToggleColorMode = () => {
-    const toggleColorMode = () => {
-        const colorMode = useColorMode();
-        colorMode.value = colorMode.value === 'lightMode' ? 'darkMode' : 'lightMode';
-    }
-    
-    return toggleColorMode;
 }

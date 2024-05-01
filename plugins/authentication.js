@@ -2,13 +2,13 @@ export default defineNuxtPlugin(() => {
     return {
         provide: {
             loginWithEmailAndPassword,
+            logout,
             getUserData,
             accessTokenIsExpired,
             refreshToken,
             userIsloggedIn,
             autoLogin,
-            refreshTokenCookieExists,
-            logout
+            refreshTokenCookieExists
         },
     }
 })
@@ -23,7 +23,7 @@ async function loginWithEmailAndPassword(email, password) {
     const userState = useUserState();
 
     try {
-        const access_token = await $fetch('http://localhost:3000/api/login', {
+        const response = await $fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,11 +34,13 @@ async function loginWithEmailAndPassword(email, password) {
             }
         });
 
-        if (!access_token || !access_token.value || !access_token.expires_at) {
+        console.log(response);
+        if (!response || !response.body || !response.body.access_token || !response.body.expires_at) {
             throw new Error('Invalid login data');
         }
 
-        userState.value.accessToken = access_token;
+        userState.value.accessToken.value = response.body.access_token;
+        userState.value.accessToken.expires_at = response.body.expires_at;
 
         await getUserData(true, false);
 
@@ -81,6 +83,7 @@ async function logout() {
 }
 
 async function getUserData(loadData = true, returnData = false) {
+    
     const userState = useUserState();
 
     try {
@@ -130,8 +133,9 @@ async function refreshToken() {
                 content: 'refresh'
             }
         });
-        
+        console.log(response.status);
         if (response.status === 200) {
+            console.log('status = 200')
             const userState = useUserState();
             userState.value.accessToken = response.body;
 
@@ -159,6 +163,7 @@ const userIsloggedIn = () => {
 async function autoLogin() {
     
     if(userIsloggedIn()) {
+        console.log('already logged in')
         return;
     }
 

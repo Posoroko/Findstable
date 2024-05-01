@@ -11,18 +11,6 @@ const directus = createDirectus(directusBaseUrl)
     .with(rest())
     .with(authentication('json'));
 
-async function userLogin(email, password) {
-    try {
-        const response = await directus.login(email, password);
-
-        return response;
-
-    } catch (error) {
-
-        console.log(error);
-    }
-}
-
 async function refreshToken(refresh_token) {
 
     try {
@@ -44,7 +32,6 @@ async function refreshToken(refresh_token) {
         console.log(error);
         return error;
     }
-
 }
 
 async function getUserData() {
@@ -64,7 +51,6 @@ async function getUserData() {
 
 export {
     directus,
-    userLogin,
     refreshToken,
     getUserData,
     directusBaseUrl

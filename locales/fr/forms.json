@@ -1,6 +1,14 @@
 {
     "forms": {
         "fields": {
+            "invitationCode": {
+                "label": "Code d'invitation",
+                "placeholder": "Votre code",
+                "messages": {
+                    "required": "Un code d'invitation est requis.",
+                    "unavailable": "Code invalide."
+                }
+            },
             "username": {
                 "label": "Pseudonyme",
                 "placeholder": "Choisissez un pseudonyme",

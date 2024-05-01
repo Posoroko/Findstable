@@ -1,10 +1,6 @@
 <script setup>
 const toggleColorMode = useToggleColorMode();
-const colorMode = useColorMode();
-
 const colorModeCookie = useCookie('colorMode');
-
-colorModeCookie.value = colorModeCookie.value || colorMode.value;
 
 defineProps({
     floating: {
@@ -13,15 +9,19 @@ defineProps({
     }
 })
 
+const availableColorModes = ['lightMode', 'darkMode'];
+
 </script>
 
 <template>
     <button 
-        @click="colorModeCookie = colorModeCookie === 'darkMode' ? 'lightMode' : 'darkMode'"
+        v-for="mode in availableColorModes" :key="mode"
+        @click="toggleColorMode(mode)"
         class="pointer"
+        :class="{ 'inactive' : colorModeCookie === mode }"
     >
         <WidgetsIconsMain 
-            :name="colorMode === 'darkMode' ? 'darkMode' : 'lightMode'"
+            :name="mode"
             size="small"
         />
     </button>
@@ -30,5 +30,8 @@ defineProps({
 <style scoped>
 button {
     padding: 5px;
+}
+button.inactive {
+    display: none;
 }
 </style>

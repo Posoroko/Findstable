@@ -1,13 +1,19 @@
 <script setup>
 const userState = useUserState();
-const editableFields = ref(false);
 
-async function updateField() {
-    console.log('updating field');
+const { $updateMe } = useNuxtApp();
+
+
+async function updateField(data) {
+    const patchObject = {
+        [data.key]: data.value,
+    };
+    $updateMe(patchObject);
 }
 </script>
 
 <template>
+    <p class="mainTC">{{ userState.userName }}</p>
     <FormsToggleEditInput
         name="userName"
         id="userName-id"

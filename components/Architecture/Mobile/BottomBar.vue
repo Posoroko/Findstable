@@ -20,7 +20,7 @@ function toggleSideBar() {
 <template>
     <div class="full flex justifyCenter alignCenter gap20">
         <NuxtLink 
-            :to="localePath('/')" 
+            :to="localePath('home')" 
             class="pointer"
         >
             <WidgetsIconsMain name="home" size="medium" />

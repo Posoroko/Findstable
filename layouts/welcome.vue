@@ -18,7 +18,5 @@ onMounted(async () => {
 </script>
 
 <template>
-    <ArchitectureAppBox>
-        <NuxtPage />
-    </ArchitectureAppBox>
+    <NuxtPage />
 </template>

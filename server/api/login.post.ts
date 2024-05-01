@@ -1,13 +1,18 @@
-import { userLogin } from '../serverDirectus.js';
+import { directus } from '../serverDirectus.js';
+
+interface ReqBody {
+    email: string;
+    password: string;
+}
 
 export default defineEventHandler(async (event) => {
 
-    const reqBody  = await readBody(event);
+    const reqBody : ReqBody  = await readBody(event);
 
     try {
-        const loginData = await userLogin(reqBody.email, reqBody.password);
+        const loginData = await directus.login(reqBody.email, reqBody.password);
 
-        if(loginData?.refresh_token) {
+        if (loginData?.refresh_token && loginData?.access_token && loginData?.expires) {
             setCookie(
                 event,
                 'directus_refresh_token',
@@ -15,20 +20,21 @@ export default defineEventHandler(async (event) => {
                 {
                     httpOnly: false,
                     path: '/',
-                    maxAge: 604800, // 7 days, value set in Directus config
+                    maxAge: 604800, // 7 days, this value is set in Directus config
                     sameSite: 'strict',
                     secure: true
                 }
             )
 
-            // return an object to match the expected type of userState.accessToken
             return {
-                value: loginData.access_token,
-                expires_at: loginData.expires ? Date.now() + ( loginData.expires * 1000 ) : 0
+                status: 200,
+                body: {
+                    access_token: loginData.access_token,
+                    expires_at: loginData.expires ? Date.now() + (loginData.expires * 1000) : 0
+                }
             };
         }
-        
-    } catch(e) {
-        return new Response(e.message, { status: 401 });
-    }  
+    } catch (error) {
+        console.log(error);
+    }
 })

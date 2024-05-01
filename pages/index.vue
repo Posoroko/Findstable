@@ -1,5 +1,4 @@
 <script setup>
-const colorMode = useColorMode();
 const { t, locale } = useI18n();
 const userState = useUserState();
 
