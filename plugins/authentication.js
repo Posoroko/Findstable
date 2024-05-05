@@ -1,6 +1,8 @@
 export default defineNuxtPlugin(() => {
     return {
         provide: {
+            createUser,
+            updateMe,
             loginWithEmailAndPassword,
             logout,
             getUserData,
@@ -13,10 +15,52 @@ export default defineNuxtPlugin(() => {
     }
 })
 
-function userState() {
-    const userState = useUserState();
+async function createUser(invitationCode, username, email, password) {
+    try {
+        const userData = await $fetch(
+            '/api/signup',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: {
+                    invitationCode,
+                    username,
+                    email,
+                    password
+                }
+            }
+        )
 
-    return userState.value;
+        if (userData.data.id) {
+            return {
+                status: 'success',
+                body: userData.data
+            }
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function updateMe(newData) {
+    console.log(newData);
+
+    const userState = useUserState();
+    const response = await $fetch('/api/update-me',
+        {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': 'Bearer ' + userState.value.accessToken.value
+            },
+            body: JSON.stringify(newData)
+        }
+    )
+
+    console.log(response);
 }
 
 async function loginWithEmailAndPassword(email, password) {
@@ -71,7 +115,7 @@ async function logout() {
         const userState = useUserState();
         userState.value.accessToken.value = '';
         userState.value.accessToken.expires_at = 0;
-        userState.value.userName = '';
+        userState.value.username = '';
         userState.value.email = '';
         userState.value.userIsLoggedIn = false;
 
@@ -97,7 +141,7 @@ async function getUserData(loadData = true, returnData = false) {
         );
 
         if (loadData && data.status === 200) {
-            userState.value.userName = data.body.userName;
+            userState.value.username = data.body.username;
             userState.value.email = data.body.email;
         }
 
@@ -107,20 +151,6 @@ async function getUserData(loadData = true, returnData = false) {
         console.log(error);
     }
 }
-
-async function loadUserDataInUserState(userData) {
-    const userState = useUserState();
-
-    userState.value.userName = data.userName;
-    // userState.value.role = data.role.name;
-    userState.value.email = data.email;
-
-    if (userState.value.userName && userState.value.accessToken.value) {
-        return 'success';
-    }
-}
-
-
 
 async function refreshToken() {
     try {
@@ -141,8 +171,6 @@ async function refreshToken() {
 
             return "success";
         }
-        
-
     } catch (error) {
         console.log(error);
     }
@@ -178,9 +206,7 @@ async function autoLogin() {
     if(userData) {
         return 'success';
     }
-    
 }
-
 
 let autoRefreshCounter = 0;
 function activateAutoRefresh() {

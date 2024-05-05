@@ -10,16 +10,18 @@ async function updateField(data) {
     };
     $updateMe(patchObject);
 }
+
 </script>
 
 <template>
-    <p class="mainTC">{{ userState.userName }}</p>
+    <WidgetsAvatarMain />
+
     <FormsToggleEditInput
-        name="userName"
-        id="userName-id"
+        name="username"
+        id="username-id"
         labelKey="forms.fields.username.label"
         showLabel
-        :value="userState.userName"
+        :value="userState.username"
         @updateField="updateField"
     />
 

@@ -15,8 +15,8 @@ const userState = useUserState();
                         <WidgetsIconsMain name="account" size="large" colorMode="light"/>
                     </div>
 
-                    <p class="userName centered text-lg lightTC">
-                        {{ userState.userName }}
+                    <p class="username centered text-lg lightTC">
+                        {{ userState.username }}
                     </p>
                 </div>
             </ArchitectureTexturePaper>

@@ -4,7 +4,7 @@
             "title": "My account",
             "personalInfo": {
                 "title": "Personal information",
-                "userName": "Username",
+                "username": "Username",
                 "email": "Email"
             },
             "settings": {

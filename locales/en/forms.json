@@ -1,5 +1,19 @@
 {
     "forms": {
+        "authentication": {
+            "formTypes": {
+                "login": {
+                    "title": "Connection",
+                    "description": "Log into your account.",
+                    "submitForm": "Login"
+                },
+                "signup": {
+                    "title": "New account",
+                    "description": "Create an account.",
+                    "submitForm": "Create account"
+                }
+            }
+        },
         "fields": {
             "invitationCode": {
                 "label": "Invitation code",
@@ -34,6 +48,10 @@
                     "invalid": "Password is invalid"
                 }
             }
+        },
+        "submit": {
+            "login": "Login",
+            "signup": "Create account"
         }
     }
 }

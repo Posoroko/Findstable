@@ -11,14 +11,14 @@ export default defineEventHandler(async (event) => {
 
     interface UserData {
         data: {
-            userName: string;
+            username: string;
             email: string;
         }
     }
 
-    const fields = ['userName', 'email', 'role.name'].join(',');
+    const fields = ['username', 'email', 'role.name', 'publicAvatar'].join(',');
 
-    const userData: UserData = await $fetch(`${runtimeConfig.DIRECTUS_URL}/users/me?fields=email,userName,role.name`, {
+    const userData: UserData = await $fetch(`${runtimeConfig.DIRECTUS_URL}/users/me?fields=email,username,role.name`, {
         headers: {
             'Authorization': `Bearer ${authorization}`
         }

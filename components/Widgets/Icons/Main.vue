@@ -54,7 +54,10 @@ svg.large {
     width: 32px;
     height: 32px;
 }
-
+svg.full {
+    width: 100%;
+    height: 100%;
+}
 #app.darkMode svg.active {
     fill: rgb(0, 186, 0);
 }

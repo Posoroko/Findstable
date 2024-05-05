@@ -18,5 +18,6 @@ export default defineNuxtConfig({
     i18n,
     runtimeConfig: {
         DIRECTUS_URL: process.env.DIRECTUS_URL,
+        APP_ACCESS_TOKEN: process.env.APP_ACCESS_TOKEN,
     },
 })

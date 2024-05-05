@@ -4,7 +4,7 @@
             "title": "Mon compte",
             "personalInfo": {
                 "title": "informations personnelles",
-                "userName": "Nom d'utilisateur",
+                "username": "Nom d'utilisateur",
                 "email": "Courriel"
             },
             "settings": {

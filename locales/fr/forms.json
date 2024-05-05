@@ -1,5 +1,19 @@
 {
     "forms": {
+        "authentication": {
+            "formTypes": {
+                "login": {
+                    "title": "Connexion",
+                    "description": "Connectez-vous à votre compte",
+                    "submitForm": "Me connecter"
+                },
+                "signup": {
+                    "title": "Inscription",
+                    "description": "Créez un nouveau compte.",
+                    "submitForm": "Créer mon compte"
+                }
+            }
+        },
         "fields": {
             "invitationCode": {
                 "label": "Code d'invitation",
@@ -34,6 +48,10 @@
                     "invalid": "Mot de passe invalide"
                 }
             }
+        },
+        "submit": {
+            "login": "Me connecter",
+            "signup": "Créer mon compte"
         }
     }
 }

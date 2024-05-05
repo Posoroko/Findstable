@@ -2,7 +2,7 @@ import {
     createDirectus,
     rest,
     authentication,
-    readMe
+    readItems
 } from '@directus/sdk';
 
 const runtimeConfig = useRuntimeConfig();
@@ -11,47 +11,8 @@ const directus = createDirectus(directusBaseUrl)
     .with(rest())
     .with(authentication('json'));
 
-async function refreshToken(refresh_token) {
-
-    try {
-        const response = await $fetch(`${directusBaseUrl}/auth/refresh`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: {
-                mode: 'json',
-                refresh_token: refresh_token
-            }
-        })
-
-        return response.data;
-
-    } catch (error) {
-
-        console.log(error);
-        return error;
-    }
-}
-
-async function getUserData() {
-    try {
-        const response = await directus.request(
-            readMe({
-                fields: ['id', 'userName', 'email', 'role.name'],
-            }));
-
-        return response;
-
-    } catch (error) {
-        console.log(error);
-        return error;
-    }
-}
-
 export {
     directus,
-    refreshToken,
-    getUserData,
-    directusBaseUrl
+    directusBaseUrl,
+    readItems
 }

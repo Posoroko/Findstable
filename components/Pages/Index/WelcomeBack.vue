@@ -12,7 +12,7 @@ const userState = useUserState();
 
             <div>
                 <NuxtLink to="/en/">
-                    I'm not {{ userState.userName }}
+                    I'm not {{ userState.username }}
                 </NuxtLink>
 
             </div>

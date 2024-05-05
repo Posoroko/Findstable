@@ -1,5 +1,5 @@
 interface ReqBody {
-    userName: String;
+    username: String;
     email: string;
     password: string;
 }

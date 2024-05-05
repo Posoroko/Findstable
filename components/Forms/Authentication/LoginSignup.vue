@@ -6,9 +6,9 @@ const { $loginWithEmailAndPassword, $createUser } = useNuxtApp();
 
 const formType = ref('login');
 
-const invitationCode = ref('182b5097-d9ce-40ad-b81a-3713248a2b3d');
-const username = ref(`eric${Date.now()}`);
-const email = ref(username.value + '@new.com');
+const invitationCode = ref('');
+const username = ref('');
+const email = ref('eric@user.com');
 const password = ref('1234');
 
 async function handleSubmit(e) {
@@ -25,19 +25,7 @@ async function handleSubmit(e) {
             username.value, 
             email.value, 
             password.value,
-            
         );
-        // const invitationCode = '182b5097-d9ce-40ad-b81a-3713248a2b3d';
-        // const username = `eric${Date.now()}`;
-        // const email = username + '@new.com';
-        // const password = '1234';
-
-        // const res = await $createUser(
-        //     invitationCode,
-        //     username, 
-        //     email, 
-        //     password
-        // );
 
         if(res.status === 'success') {
             formType.value = 'login';
@@ -46,21 +34,19 @@ async function handleSubmit(e) {
     }
 }
 
-
-
 </script>
 
 <template>
     <form @submit.stop.prevent="handleSubmit" class="flex column gap10">
         <fieldset class="flex justifyCenter gap20">
             <label for="login">
-                <span>login</span>
+                <span>{{ t('forms.authentication.formTypes.login.title') }}</span>
                 <input type="radio" name="formType" id="login" value="login" v-model="formType">
             </label>
             
 
             <label for="signup">
-                <span>signup</span>
+                <span>{{ t('forms.authentication.formTypes.signup.title') }}</span>
                 <input type="radio" name="formType" id="signup" value="signup" v-model="formType">
             </label>
         </fieldset>
@@ -97,7 +83,12 @@ async function handleSubmit(e) {
             label_key="forms.fields.password.label"
             v-model="password"
         />
-        <input class="hover" type="submit" value="Login" />
+
+        <input class="hover" type="submit" 
+            :value="formType === 'login' ? 
+                t('forms.authentication.formTypes.login.submitForm') : 
+                t('forms.authentication.formTypes.signup.submitForm') "
+        />
     </form>
 </template>
 
